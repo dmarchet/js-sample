@@ -13,3 +13,11 @@ var showTweet = function(tweet){
                           "</p></div></li>"
                           );
 };
+
+var showHashtag = function(hashtag){
+  $("#hashtags-list").append(
+                          "<li>#" +
+                          hashtag.name +
+                          "</li>"
+                          );
+};
