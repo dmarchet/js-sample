@@ -16,7 +16,7 @@ class TweetsController < ApplicationController
 
   def create
     tweet = Tweet.new(tweet_params)
-    tweet.content ||= Faker::Lorem.sentence
+    # tweet.content = params[:content]
     tweet.username ||= Faker::Name.name
     tweet.handle ||= "@" + Faker::Internet.user_name
     tweet.avatar_url ||= Faker::Avatar.image(tweet.username)

@@ -3,5 +3,9 @@ $(document).on('ready', function(){
   $("#hashtags-list").empty();
   handleReceiveTweets();
   handleReceiveHashtags();
+  $("#tweet-form").on("submit", function(event){
+    event.preventDefault();
+    handleReceiveNewTweet();
+  })
 });
 
