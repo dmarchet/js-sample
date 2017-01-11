@@ -19,5 +19,6 @@ var handleReceiveHashtags = function(){
 };
 
 var findHashtags = function(data){
-
+  var hashtags = data.match(/\B#\w*[a-zA-Z]+\w*/g)
+  return hashtags
 }
