@@ -8,6 +8,8 @@ var fetchHashtags = function(){
   return requestPromise
 };
 
+
+
 var handleReceiveHashtags = function(){
   var promiseFromAjax = fetchHashtags();
 
@@ -18,6 +20,8 @@ var handleReceiveHashtags = function(){
   });
 };
 
+
+
 var findHashtags = function(data){
   var hashtags = data.match(/\B#\w*[a-zA-Z]+\w*/g)
   var dataHashtags = []
@@ -27,6 +31,8 @@ var findHashtags = function(data){
   return dataHashtags
 };
 
+
+
 var checkSearchSyntax = function(text){
   var newText = text
   if(text[0] = "#"){
@@ -34,6 +40,8 @@ var checkSearchSyntax = function(text){
   }
   return newText
 };
+
+
 
 var fetchSearchedHashtags = function(hashtag){
   var url = "/tweets/search/" + hashtag
@@ -49,25 +57,3 @@ var fetchSearchedHashtags = function(hashtag){
                         });
   return requestPromise
 };
-
-var handleReceiveHashtagTweets = function(searchItem){
-  var searchField = searchItem.val();
-  if(searchField != 0){
-    var hashtag = checkSearchSyntax(searchField)
-    var promiseFromAjax = fetchSearchedHashtags(hashtag);
-  }
-  else{
-    searchField = searchItem.html();
-    var hashtag = checkSearchSyntax(searchField)
-    var promiseFromAjax = fetchSearchedHashtags(hashtag);
-  }
-
-  promiseFromAjax.done(function(tweetData){
-    $("#search").css("background-color", "white")
-    $("#search-form").trigger("reset");
-    $("#tweets-list").empty();
-    for(var i in tweetData){
-      showTweet(tweetData[i]);
-    };
-  });
-}

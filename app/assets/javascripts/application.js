@@ -16,7 +16,7 @@ $(document).on('ready', function(){
 
   $("#hashtags-list").on("click", "li", function(){
     handleReceiveHashtagTweets($(this))
-  })
+  });
 
 });
 

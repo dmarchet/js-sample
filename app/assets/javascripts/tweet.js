@@ -8,6 +8,8 @@ var fetchTweets = function(){
   return requestPromise;
 };
 
+
+
 var handleReceiveTweets = function(){
   var promiseFromAjax = fetchTweets();
 
@@ -17,6 +19,8 @@ var handleReceiveTweets = function(){
     };
   });
 };
+
+
 
 var sendTweet = function(){
   var formData = $("#new-tweet").val();
@@ -36,6 +40,8 @@ var sendTweet = function(){
   return requestPromise;
 };
 
+
+
 var handleReceiveNewTweet = function(){
   var promiseFromAjax = sendTweet();
 
@@ -45,4 +51,27 @@ var handleReceiveNewTweet = function(){
   });
 };
 
+
+
+var handleReceiveHashtagTweets = function(searchItem){
+  var searchField = searchItem.val();
+  if(searchField != 0){
+    var hashtag = checkSearchSyntax(searchField)
+    var promiseFromAjax = fetchSearchedHashtags(hashtag);
+  }
+  else{
+    searchField = searchItem.html();
+    var hashtag = checkSearchSyntax(searchField)
+    var promiseFromAjax = fetchSearchedHashtags(hashtag);
+  }
+
+  promiseFromAjax.done(function(tweetData){
+    $("#search").css("background-color", "white")
+    $("#search-form").trigger("reset");
+    $("#tweets-list").empty();
+    for(var i in tweetData){
+      showTweet(tweetData[i]);
+    };
+  });
+}
 
