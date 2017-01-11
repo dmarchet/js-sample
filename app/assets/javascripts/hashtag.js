@@ -17,3 +17,7 @@ var handleReceiveHashtags = function(){
     };
   });
 };
+
+var findHashtags = function(data){
+
+}

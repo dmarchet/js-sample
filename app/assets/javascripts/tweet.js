@@ -23,7 +23,8 @@ var sendTweet = function(){
   var tweet = {
       tweet: {
         content: formData
-      }
+      },
+      hashtags: findHashtags(formData)
     }
 
   var requestPromise = $.ajax({
@@ -40,5 +41,6 @@ var handleReceiveNewTweet = function(){
 
   promiseFromAjax.done(function(tweetData){
     addTweet(tweetData);
+    $("#tweet-form").trigger("reset");
   });
 };
